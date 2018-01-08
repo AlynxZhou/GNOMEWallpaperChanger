@@ -4,6 +4,10 @@ SOURCES := src/GNOMEWallpaperChanger.vala src/UPower.vala src/Main.vala
 gnome-wallpaper-changer: ${SOURCES}
 	valac ${PKGS} -o bin/gnome-wallpaper-changer ${SOURCES}
 
+.PHONY: debug
+debug: ${SOURCES}
+	valac -g ${PKGS} -o bin/gnome-wallpaper-changer_debug ${SOURCES}
+
 .PHONY: install
 install:
 	install -o root -m 0755 -D bin/gnome-wallpaper-changer /usr/bin/gnome-wallpaper-changer
@@ -14,7 +18,7 @@ uninstall:
 
 .PHONY: clean
 clean:
-	-rm -f bin/gnome-wallpaper-changer
+	-rm -f bin/gnome-wallpaper-changer bin/gnome-wallpaper-changer_debug
 
 .PHONY: rebuild
 rebuild: clean gnome-wallpaper-changer
