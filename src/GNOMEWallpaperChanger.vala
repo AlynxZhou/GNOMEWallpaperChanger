@@ -11,6 +11,8 @@ public class GNOMEWallpaperChanger : Object {
 
 	public GNOMEWallpaperChanger(int s = 5 * 60, string[] d = { "./" }, bool r = false, string o = "zoom", bool p = false) {
 		seconds = s;
+		if (seconds == 0)
+			seconds = 5 * 60;
 		dirs = d;
 		recursive = r;
 		option = o;
@@ -87,6 +89,9 @@ public class GNOMEWallpaperChanger : Object {
 		files = {};
 		foreach (string dir_name in dirs)
 			read_dir(dir_name, recursive);
+		// Align to the first second of a minute.
+		int second_now = new DateTime.now_utc().get_second();
+		Thread.usleep((seconds - second_now % seconds) * 1000 * 1000 - 300 * 1000);
 		for (int i = 0; files.length != 0; Thread.usleep(seconds * 1000 * 1000)) {
 			if (i >= files.length)
 				i = 0;

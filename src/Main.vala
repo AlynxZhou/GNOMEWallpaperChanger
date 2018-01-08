@@ -24,7 +24,7 @@ public class Main : Object {
 	};
 
 	public static int main(string[] args) {
-		string version_str = "0.1.0";
+		string version_str = "0.1.1";
 		try {
 			OptionContext option_context = new OptionContext("- GNOME Wallpaper Auto Changer");
 			option_context.set_help_enabled(true);
