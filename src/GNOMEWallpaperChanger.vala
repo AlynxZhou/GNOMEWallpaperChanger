@@ -90,9 +90,8 @@ public class GNOMEWallpaperChanger : Object {
 		foreach (string dir_name in dirs)
 			read_dir(dir_name, recursive);
 		// Align to the first second of a minute.
-		int second_now = new DateTime.now_utc().get_second();
-		Thread.usleep((seconds - second_now % seconds) * 1000 * 1000 - 300 * 1000);
-		for (int i = 0; files.length != 0; Thread.usleep(seconds * 1000 * 1000)) {
+		Thread.usleep((seconds - new DateTime.now_utc().get_second() % seconds) * 1000 * 1000 - 300 * 1000);
+		for (int i = 0; files.length != 0; Thread.usleep((seconds - new DateTime.now_utc().get_second() % seconds) * 1000 * 1000 - 300 * 1000)) {
 			if (i >= files.length)
 				i = 0;
 			if (powersave && !check_power(get_power_device(upower)))
