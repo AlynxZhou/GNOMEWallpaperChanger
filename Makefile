@@ -1,5 +1,5 @@
 PKGS ?= --pkg gio-2.0 --pkg glib-2.0
-SOURCES := src/GNOMEWallpaperChanger.vala src/UPower.vala src/Main.vala
+SOURCES := src/GNOMEWallpaperChanger.vala src/Main.vala
 
 gnome-wallpaper-changer: ${SOURCES}
 	valac ${PKGS} -o bin/gnome-wallpaper-changer ${SOURCES}

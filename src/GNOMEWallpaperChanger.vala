@@ -7,7 +7,7 @@ public class GNOMEWallpaperChanger : Object {
 	private string[] files = {};
 	private const string[] picture_types = { "png", "webp", "jpg", "jpeg", "bmp" };
 	private Settings wallpaper_settings = new Settings("org.gnome.desktop.background");
-	private UPower.UPower? upower = null;
+	// private UPower.UPower? upower = null;
 
 	public GNOMEWallpaperChanger(int s = 5 * 60, string[] d = { "./" }, bool r = false, string o = "zoom", bool p = false) {
 		seconds = s;
@@ -19,29 +19,29 @@ public class GNOMEWallpaperChanger : Object {
 		powersave = p;
 	}
 
-	private UPower.UPower connect_upower() throws IOError {
-		return upower = Bus.get_proxy_sync(BusType.SYSTEM, UPower.NAME, UPower.PATH, DBusProxyFlags.NONE);
-	}
-
-	private UPower.Device get_power_device(UPower.UPower u) throws IOError {
-		ObjectPath[] devs = u.enumerate_devices();
-		for (int i = 0; i < devs.length; i++) {
-			UPower.Device dev = Bus.get_proxy_sync(BusType.SYSTEM, UPower.NAME, devs[i], DBusProxyFlags.GET_INVALIDATED_PROPERTIES);
-			if (dev.device_type == UPower.LINE_POWER)
-				return dev;
-		}
-		throw new IOError.NOT_FOUND("UPower Line Power Not Found");
-	}
-
-	private bool check_power(UPower.Device upower_device) throws IOError {
-		if (upower_device != null) {
-			upower_device.refresh();
-			if (upower_device.online && upower_device.power_supply) {
-				return true;
-			}
-		}
-		return false;
-	}
+	// private UPower.UPower connect_upower() throws IOError {
+	// 	return Bus.get_proxy_sync(BusType.SYSTEM, UPower.NAME, UPower.PATH, DBusProxyFlags.NONE);
+	// }
+        //
+	// private UPower.Device get_power_device(UPower.UPower u) throws IOError {
+	// 	ObjectPath[] devs = u.enumerate_devices();
+	// 	for (int i = 0; i < devs.length; i++) {
+	// 		UPower.Device dev = Bus.get_proxy_sync(BusType.SYSTEM, UPower.NAME, devs[i], DBusProxyFlags.GET_INVALIDATED_PROPERTIES);
+	// 		if (dev.device_type == UPower.LINE_POWER)
+	// 			return dev;
+	// 	}
+	// 	throw new IOError.NOT_FOUND("UPower Line Power Not Found");
+	// }
+        //
+	// private bool check_power(UPower.Device upower_device) throws IOError {
+	// 	if (upower_device != null) {
+	// 		upower_device.refresh();
+	// 		if (upower_device.online && upower_device.power_supply) {
+	// 			return true;
+	// 		}
+	// 	}
+	// 	return false;
+	// }
 
 	private int get_enum_option(string option) {
 		switch (option) {
@@ -83,19 +83,19 @@ public class GNOMEWallpaperChanger : Object {
 	}
 
 	public void main_loop() throws IOError, FileError {
-		if (powersave)
-			upower = connect_upower();
+		// if (powersave)
+			// upower = connect_upower();
 		// Read dir first.
 		files = {};
 		foreach (string dir_name in dirs)
 			read_dir(dir_name, recursive);
 		// Align to the first second of a minute.
-		Thread.usleep((seconds - new DateTime.now_utc().get_second() % seconds) * 1000 * 1000 - 300 * 1000);
-		for (int i = 0; files.length != 0; Thread.usleep((seconds - new DateTime.now_utc().get_second() % seconds) * 1000 * 1000 - 300 * 1000)) {
+		Thread.usleep((seconds - new DateTime.now_utc().get_second() % seconds) * 1000 * 1000);
+		for (int i = 0; files.length != 0; Thread.usleep((seconds - new DateTime.now_utc().get_second() % seconds) * 1000 * 1000)) {
 			if (i >= files.length)
 				i = 0;
-			if (powersave && !check_power(get_power_device(upower)))
-				continue;
+			// if (powersave && !check_power(get_power_device(upower)))
+				// continue;
 			// Refresh dir every loop.
 			files = {};
 			foreach (string dir_name in dirs)
