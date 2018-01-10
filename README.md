@@ -26,10 +26,10 @@ $ ./bin/gnome-wallpaper-changer -h
 Example:
 
 ```bash
-$ nohup ./bin/gnome-wallpaper-changer -rps 60 -o zoom ~/Pictures/Wallpapers >> /dev/null 2>&1 &
+$ nohup ./bin/gnome-wallpaper-changer -rs 60 -o zoom ~/Pictures/Wallpapers >> /dev/null 2>&1 &
 ```
 
-will run this independently, it use `~/Pictures/Wallpapers` as wallpaper dir, and will look for pictures recursively, change wallpaper every 60 seconds, picture option will be `zoom`, and with powersave mode it won't change wallpaper when you are usin g battery.
+will run this independently, it use `~/Pictures/Wallpapers` as wallpaper dir, and will look for pictures recursively, change wallpaper every 60 seconds, picture option will be `zoom`.
 
 # Why write this?
 
