@@ -11,8 +11,8 @@ public class Main : Object {
 		{ "version", 'v', 0, OptionArg.NONE, ref version, "Display version number.", null },
 		// --recursive || -r
 		{ "recursive", 'r', 0, OptionArg.NONE, ref recursive, "Read dirs recursively.", null },
-		// --recursive || -r
-		{ "powersave", 'p', 0, OptionArg.NONE, ref powersave, "Disable changer when using battery.", null },
+		// --powersave || -p
+		// { "powersave", 'p', 0, OptionArg.NONE, ref powersave, "Disable changer when using battery.", null },
 		// --seconds=SECONDS || -s SECONDS
 		{ "seconds", 's', 0, OptionArg.INT, ref seconds, "Interval in seconds.", "SECONDS" },
 		// --option=OPTION || -o OPTION
